@@ -1,145 +1,70 @@
 import 'package:flutter/material.dart';
-import 'calculator.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyHome(),
+    return const MaterialApp(
+      home: LoginScreen(),
     );
   }
-
 }
 
-class MyHome extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
+class LoginScreen extends StatelessWidget{
+  const LoginScreen({Key? key}) : super(key: key);
 
-class _MyAppState extends State<MyHome> {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flut',
-      home: Scaffold(
-        //isi scaffoldq
+  Widget build(BuildContext context){
+    return Scaffold(
         appBar: AppBar(
-          title: Text("Login Page"),
+          title: const Text('Tugas 1 TPM - 123200142'),
         ),
-        body: Container(
-          //isi body: Container
-          decoration: BoxDecoration(
-            //jumlah stop berbanding lurus dengan jumlah warna
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomCenter,
-              //jumlah stop berbanding lurus dengan jumlah warna
-              stops: [0.3, 0.6, 0.9],
-              colors: [
-                Color.fromRGBO(12, 235, 235, 1),
-                Color.fromRGBO(32, 227, 178, 1),
-                Color.fromRGBO(41, 255, 198, 1),
-              ],
-            ),
-          ),
-          child: Container(
-            //isi child: Container
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomCenter,
-                  //jumlah stop berbanding lurus dengan jumlah warna
-                  stops: [0.3, 0.6, 0.9],
-                  colors: [
-                    Color.fromRGBO(12, 235, 235, 1),
-                    Color.fromRGBO(32, 227, 178, 1),
-                    Color.fromRGBO(41, 255, 198, 1),
-                  ],
-                ),
-                boxShadow: [
-                  BoxShadow(
-                      blurRadius: 18.0,
-                      color: Colors.transparent.withOpacity(.5),
-                      spreadRadius: 12.5),
-                ]),
-            margin: EdgeInsets.fromLTRB(40, 35, 40, 50),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
             child: Column(
-              //isi child: Column
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(bottom: 45, top: 15),
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        "Login",
-                        style: TextStyle(
-                            fontFamily: 'LexendDeca',
-                            fontSize: 19,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
+              children: [
+                const SizedBox(height: 150,),
+                const FlutterLogo(),
+                const SizedBox(height: 50,),
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(10, 5, 10, 20),
-                  child: Column(
-
-                    children: <Widget>[
-                      Text("Email"),
-
-                      Container(
-                          margin: EdgeInsets.only(top: 10, bottom: 8),
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                                hintText: "Email",
-                                prefixIcon: Icon(Icons.message),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(28))),
-                          )),
-
-                      Text("Password"),
-
-                      Container(
-                          margin: EdgeInsets.only(top: 10, bottom: 8),
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                                hintText: "Password",
-                                prefixIcon: Icon(Icons.lock),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(28))),
-                          )),
-
-                      FlatButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0)),
-                        color: Colors.blue,
-                        textColor: Colors.white,
-                        child: Text('Sign In'),
-                        onPressed: () {
-                            Route route = MaterialPageRoute(builder: (context) => HomePage());
-                            Navigator.push(context, route);
-                            },
-                      ),
-
-                    ],
-
+                const SizedBox(height: 10,),
+                TextFormField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
                   ),
                 ),
+                const SizedBox(height: 20,),
+                ElevatedButton(onPressed: (){},
+                  child: const Text("Log in"),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 50),
+                    shadowColor: Colors.black,
+                    elevation: 5,
+                  ),
+                ),
+                const SizedBox(height: 5,),
+                const TextButton(onPressed: (null), child: Text("Forgot Password?"))
               ],
-              //isi child: Column
             ),
-            //child: Container
           ),
-          //body: Container
-        ),
-        //scaffold
-      ),
+        )
     );
   }
 }
+
